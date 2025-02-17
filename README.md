@@ -6,8 +6,8 @@ You will be provided with a **starter repository** that includes the basic proje
 
 We are providing:
 
-- [Figma design link](https://www.figma.com/design/p4aO5zxiLUkws5DDTTWP92/Untitled?node-id=0-1&t=oePPLG5LIUguMtQy-1)
-- **Postman collection**.
+- [**Figma design link**](https://www.figma.com/design/p4aO5zxiLUkws5DDTTWP92/Untitled?node-id=0-1&t=oePPLG5LIUguMtQy-1)
+- [**Postman collection**](https://documenter.getpostman.com/view/8605001/2sAYXFiHWQ)
 
 ## **Tech Stack**
 
