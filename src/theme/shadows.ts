@@ -1,6 +1,5 @@
 import { alpha, Shadows } from '@mui/material/styles';
 
-
 // ----------------------------------------------------------------------
 
 export function shadows(): Shadows {

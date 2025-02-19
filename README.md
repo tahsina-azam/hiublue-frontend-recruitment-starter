@@ -83,18 +83,18 @@ npm install
 
 ## **Evaluation Criteria**
 
-| **Category** | **Evaluation Criteria** |
-| --- | --- |
-| **Code Quality** | Readability, structure, component-based approach |
-| **TypeScript Usage** | Proper typing of components, hooks, data types, API responses |
-| **API Handling** | Proper usage of necessary caching, error handling |
-| **UI & UX** | Clean UI, responsiveness, MUI usage, adherence to Figma design. Using MUI is a must. |
-| **Authentication** | Token-based authentication, proper auth state management using Context API & LocalStorage |
-| **Table Features** | Proper implementation of pagination, searching using. |
-| **Form Handling** | Correct usage of React Hook Form and proper validation |
-| **Onboarding Offer** | Ability to select users, send onboarding requests |
-| **Error & Success Messages** | Proper display of validation errors and success messages |
-| **Git Practices** | Clean commits, meaningful messages, proper branching |
+| **Category**                 | **Evaluation Criteria**                                                                   |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
+| **Code Quality**             | Readability, structure, component-based approach                                          |
+| **TypeScript Usage**         | Proper typing of components, hooks, data types, API responses                             |
+| **API Handling**             | Proper usage of necessary caching, error handling                                         |
+| **UI & UX**                  | Clean UI, responsiveness, MUI usage, adherence to Figma design. Using MUI is a must.      |
+| **Authentication**           | Token-based authentication, proper auth state management using Context API & LocalStorage |
+| **Table Features**           | Proper implementation of pagination, searching using.                                     |
+| **Form Handling**            | Correct usage of React Hook Form and proper validation                                    |
+| **Onboarding Offer**         | Ability to select users, send onboarding requests                                         |
+| **Error & Success Messages** | Proper display of validation errors and success messages                                  |
+| **Git Practices**            | Clean commits, meaningful messages, proper branching                                      |
 
 ## **Deadline**
 

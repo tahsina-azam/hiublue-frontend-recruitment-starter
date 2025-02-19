@@ -50,7 +50,8 @@ export function alert(theme: Theme) {
   return {
     MuiAlert: {
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: AlertProps }) => rootStyles(ownerState),
+        root: ({ ownerState }: { ownerState: AlertProps }) =>
+          rootStyles(ownerState),
         icon: {
           opacity: 1,
         },

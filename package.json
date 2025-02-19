@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --write .",
     "lint": "next lint",
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
   },
@@ -16,6 +17,7 @@
     "@iconify/react": "^5.2.0",
     "@mui/material": "^6.4.4",
     "@mui/material-nextjs": "next",
+    "husky": "^9.1.7",
     "lodash": "^4.17.21",
     "next": "^15.0.0",
     "prettier": "^3.5.1",
@@ -27,8 +29,10 @@
     "@types/node": "latest",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "eslint": "latest",
+    "eslint": "^9.20.1",
     "eslint-config-next": "^15.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "typescript": "latest"
   }
 }

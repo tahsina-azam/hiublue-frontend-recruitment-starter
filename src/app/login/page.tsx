@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-
-import LoginView from "@/sections/login/views/login-view";
-import { useAuth } from "context/authContext";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import LoginView from '@/sections/login/views/login-view';
+import { useAuth } from 'context/authContext';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function LoginPage() {
   const { token, login } = useAuth();
@@ -13,7 +12,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (token) {
-      router.replace("/dashboard");
+      router.replace('/dashboard');
     } else {
       setLoading(false);
     }
@@ -21,29 +20,36 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://dummy-1.hiublue.com/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "test@example.com", password: "password" }),
+      const response = await fetch('https://dummy-1.hiublue.com/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: 'test@example.com',
+          password: 'password',
+        }),
       });
 
-      if (!response.ok) throw new Error("Login failed");
+      if (!response.ok) throw new Error('Login failed');
 
       const data = await response.json();
       login(data.token, data.user);
-      router.push("/dashboard");
+      router.push('/dashboard');
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error('Login Error:', error);
     }
   };
 
   if (loading) {
-    return <div className="h-screen flex justify-center items-center">Redirecting...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Redirecting...
+      </div>
+    );
   }
 
   return (
     <div>
-      <LoginView/>
+      <LoginView />
     </div>
   );
 }

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useAuth } from "context/authContext";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useAuth } from 'context/authContext';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
   const { token, logout } = useAuth();
@@ -12,7 +12,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (!token) {
       //console.log("this is no token")
-      router.replace("/login"); // Redirect to login if not authenticated
+      router.replace('/login'); // Redirect to login if not authenticated
     } else {
       //console.log("this is the token:"+token)
       setLoading(false);
@@ -20,7 +20,11 @@ export default function Dashboard() {
   }, [token, router]);
 
   if (loading) {
-    return <div className="h-screen flex justify-center items-center">Loading...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   return (

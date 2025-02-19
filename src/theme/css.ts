@@ -7,10 +7,10 @@ import { autocompleteClasses } from '@mui/material/Autocomplete';
 // ----------------------------------------------------------------------
 
 export const paper = ({
-                        theme,
-                        bgcolor,
-                        dropdown,
-                      }: {
+  theme,
+  bgcolor,
+  dropdown,
+}: {
   theme: Theme;
   bgcolor?: string;
   dropdown?: boolean;
