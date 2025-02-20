@@ -8,6 +8,7 @@ import SelectItems from '@/components/common/SelectItem';
 import CardView from '@/components/layout/CardView';
 import WebsiteVisitChart from '@/components/graph/WebsiteVisitChart';
 import OffersSentChart from '@/components/graph/OffersSentChart';
+import OffersTable from '@/components/common/OffersTable';
 
 const drawerWidth = 240; // Ensure the drawer width is consistent
 
@@ -18,7 +19,7 @@ export default function DashboardView() {
   const handleDrawerClose = () => setOpen(false);
 
   return (
-    <Box >
+    <Box>
       <CssBaseline />
       <AppBar open={open} handleDrawerOpen={handleDrawerOpen} />
       <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
@@ -27,20 +28,20 @@ export default function DashboardView() {
       <Box
         component="main"
         sx={{
-          display:"flex",
-          justifyContent:"space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
           flexGrow: 1,
-          ml: open ? `${drawerWidth}px` : 0, 
+          ml: open ? `${drawerWidth}px` : 0,
           mt: '64px',
-          p: 3, 
+          p: 3,
         }}
       >
         <Typography variant="h4" color="text.primary">
           Dashboard
         </Typography>
-        <SelectItems/>
+        <SelectItems />
       </Box>
-      <CardView/>
+      <CardView />
       {/* Charts Section: Side by Side */}
       <Box
         sx={{
@@ -50,6 +51,7 @@ export default function DashboardView() {
           gap: '20px',
           flexWrap: 'wrap', // Makes it responsive
           mt: 4,
+          mb:20
         }}
       >
         <Box sx={{ width: { xs: '100%', sm: '555px' }, height: '318px' }}>
@@ -59,6 +61,7 @@ export default function DashboardView() {
           <OffersSentChart />
         </Box>
       </Box>
+      <OffersTable/>
     </Box>
   );
 }

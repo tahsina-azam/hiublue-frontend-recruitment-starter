@@ -16,10 +16,7 @@ const MenuProps = {
   },
 };
 
-const names = [
-    "This Week",
-  "Previous Week"
-];
+const names = ['This Week', 'Previous Week'];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
@@ -39,7 +36,7 @@ export default function SelectItems() {
     } = event;
     setPersonName(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      typeof value === 'string' ? value.split(',') : value
     );
   };
 
