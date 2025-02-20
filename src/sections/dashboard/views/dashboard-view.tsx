@@ -25,21 +25,34 @@ export default function DashboardView() {
       <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
 
       {/* Main Content Area */}
+     
       <Box
         component="main"
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
-          flexGrow: 1,
+          justifyContent: 'center', // Center horizontally
+         
+         
+          width: "100%", // Ensure it takes the full width
           ml: open ? `${drawerWidth}px` : 0,
-          mt: '64px',
+          mt: '64px', // Adjust for AppBar height
           p: 3,
         }}
       >
-        <Typography variant="h4" color="text.primary">
-          Dashboard
-        </Typography>
-        <SelectItems />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%', // Make sure it's 100% of the available space
+            maxWidth: '1180px', // Optional: limit max width
+          }}
+        >
+          <Typography variant="h4" color="text.primary">
+            Dashboard
+          </Typography>
+          <SelectItems />
+        </Box>
       </Box>
       <CardView />
       {/* Charts Section: Side by Side */}
@@ -48,10 +61,10 @@ export default function DashboardView() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: '20px',
+          gap: '50px',
           flexWrap: 'wrap', // Makes it responsive
           mt: 4,
-          mb:20
+          mb: 20,
         }}
       >
         <Box sx={{ width: { xs: '100%', sm: '555px' }, height: '318px' }}>
@@ -61,7 +74,9 @@ export default function DashboardView() {
           <OffersSentChart />
         </Box>
       </Box>
-      <OffersTable/>
+      <Box sx={{ paddingBottom:4 }}>
+        <OffersTable />
+      </Box>
     </Box>
   );
 }

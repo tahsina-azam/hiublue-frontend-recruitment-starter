@@ -15,7 +15,7 @@ export default function DashboardCard({
   return (
     <Box
       sx={{
-        width: 370,
+        width: 400,
         height: 178,
         display: 'flex',
         justifyContent: 'center',
