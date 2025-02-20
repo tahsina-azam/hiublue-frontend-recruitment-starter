@@ -3,6 +3,8 @@
 import { useAuth } from 'context/authContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import DashboardView from '@/sections/dashboard/views/dashboard-view';
+
 
 export default function Dashboard() {
   const { token, logout } = useAuth();
@@ -29,8 +31,8 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1>Dashboard</h1>
-      <button onClick={logout}>Logout</button>
+     <DashboardView/>
+      
     </div>
   );
 }

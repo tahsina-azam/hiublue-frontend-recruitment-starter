@@ -54,5 +54,4 @@ export const FlagIcon = forwardRef<HTMLSpanElement, FlagIconProps>(
   }
 );
 
-FlagIcon.displayName = "FlagIcon"; // ✅ Fix: Assigning a display name
-
+FlagIcon.displayName = 'FlagIcon'; // ✅ Fix: Assigning a display name

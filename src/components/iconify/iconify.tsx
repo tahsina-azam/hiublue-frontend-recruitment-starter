@@ -24,6 +24,6 @@ const Iconify = forwardRef<SVGElement, Props>(
   )
 );
 
-Iconify.displayName = "Iconify"; // ✅ Fix: Assigning a display name
+Iconify.displayName = 'Iconify'; // ✅ Fix: Assigning a display name
 
 export default Iconify;
