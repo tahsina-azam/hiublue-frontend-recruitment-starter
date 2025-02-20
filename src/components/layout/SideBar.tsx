@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { Drawer, List, IconButton } from "@mui/material";
-import { styled, useTheme } from "@mui/material/styles";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Image from "next/image";
-import SidebarItem from "../common/SidebarItem";
+import { Drawer, List, IconButton } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Image from 'next/image';
+import SidebarItem from '../common/SidebarItem';
 
 const drawerWidth = 240;
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: "space-between",
+  justifyContent: 'space-between',
 }));
 
 interface SidebarProps {
@@ -30,9 +30,9 @@ export default function Sidebar({ open, handleDrawerClose }: SidebarProps) {
       sx={{
         width: drawerWidth,
         flexShrink: 0,
-        "& .MuiDrawer-paper": {
+        '& .MuiDrawer-paper': {
           width: drawerWidth,
-          boxSizing: "border-box",
+          boxSizing: 'border-box',
         },
       }}
       variant="persistent"
@@ -45,7 +45,11 @@ export default function Sidebar({ open, handleDrawerClose }: SidebarProps) {
           <Image src="/logo.png" alt="Brand Logo" width={48} height={48} />
         </IconButton>
         <IconButton onClick={handleDrawerClose}>
-          {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          {theme.direction === 'ltr' ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
         </IconButton>
       </DrawerHeader>
 

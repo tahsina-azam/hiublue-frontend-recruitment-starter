@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface ProfileImageProps {
   src: string;
@@ -12,7 +12,7 @@ export default function ProfileImage({ src, size = 40 }: ProfileImageProps) {
       alt="User Profile"
       width={size}
       height={size}
-      style={{ borderRadius: "50%" }}
+      style={{ borderRadius: '50%' }}
     />
   );
 }

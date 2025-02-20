@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import DashboardView from '@/sections/dashboard/views/dashboard-view';
 
-
 export default function Dashboard() {
   const { token, logout } = useAuth();
   const router = useRouter();
@@ -31,8 +30,7 @@ export default function Dashboard() {
 
   return (
     <div>
-     <DashboardView/>
-      
+      <DashboardView />
     </div>
   );
 }

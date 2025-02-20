@@ -18,11 +18,13 @@
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.4",
     "@mui/material-nextjs": "next",
+    "apexcharts": "^4.5.0",
     "husky": "^9.1.7",
     "lodash": "^4.17.21",
     "next": "^15.0.0",
     "prettier": "^3.5.1",
     "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
