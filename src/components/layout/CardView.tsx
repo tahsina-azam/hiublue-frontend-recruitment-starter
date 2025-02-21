@@ -70,7 +70,7 @@ export default function CardView() {
         <Grid
           container
           rowSpacing={10}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          columnSpacing={{ xs: 1, sm: 2, md: 2 }}
           justifyContent="center"
           alignItems="center"
           sx={{ flexDirection: { xs: 'column', sm: 'row' }, marginTop: '10px' }}

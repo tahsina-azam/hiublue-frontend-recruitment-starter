@@ -4,7 +4,7 @@ import { Card, CardContent, Typography } from '@mui/material';
 import { useAuth } from 'context/authContext';
 
 const WeeklyWebsiteVisitsChart = () => {
-  const {token} = useAuth();
+  const { token } = useAuth();
   const [chartData, setChartData] = useState({
     series: [],
     categories: [],

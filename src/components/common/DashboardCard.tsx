@@ -22,7 +22,7 @@ export default function DashboardCard({
         alignItems: 'center',
       }}
     >
-      <Card sx={{ width: 344, height: 148 }}>
+      <Card sx={{ width: 350, height: 148 }}>
         <CardContent>
           <Typography variant="h6">{title}</Typography>
           <Typography variant="h4" fontWeight="bold">

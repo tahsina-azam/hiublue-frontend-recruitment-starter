@@ -545,7 +545,7 @@ const API_URL = 'https://dummy-1.hiublue.com/api/offers';
 const OffersTable = () => {
   const [offers, setOffers] = useState([]);
   const [search, setSearch] = useState('');
-  const {token} = useAuth();
+  const { token } = useAuth();
   const [statusFilter, setStatusFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all'); // 'all' or 'accepted'

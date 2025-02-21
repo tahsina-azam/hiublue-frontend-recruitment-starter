@@ -52,11 +52,11 @@ const OfferForm = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const selectedAdditions = watch('additions');
-  const {token} = useAuth();
+  const { token } = useAuth();
 
   // Fetch users based on search input
   const fetchUsers = async (search) => {
-    if (!search ) return;
+    if (!search) return;
     setLoading(true);
 
     try {

@@ -33,7 +33,7 @@ export default function DashboardView() {
           justifyContent: 'center', // Center horizontally
 
           width: '100%', // Ensure it takes the full width
-         
+
           mt: '64px', // Adjust for AppBar height
           p: 3,
         }}
@@ -44,7 +44,7 @@ export default function DashboardView() {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%', // Make sure it's 100% of the available space
-            maxWidth: '1180px', // Optional: limit max width
+            maxWidth: '1170px', // Optional: limit max width
           }}
         >
           <Typography variant="h4" color="text.primary">
