@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useRouter } from 'next/navigation';
 
 export default function LandingPage() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -24,7 +24,8 @@ export default function LandingPage() {
         Welcome to Dashboard
       </Typography>
       <Typography variant="h4" color="white" maxWidth={600} mb={3}>
-        In this dashboard, get visualizations of system data and send offers to new users. Monitor progress and insights efficiently.
+        In this dashboard, get visualizations of system data and send offers to
+        new users. Monitor progress and insights efficiently.
       </Typography>
 
       {/* Button */}

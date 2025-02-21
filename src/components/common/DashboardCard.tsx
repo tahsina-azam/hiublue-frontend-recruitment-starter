@@ -24,18 +24,25 @@ export default function DashboardCard({
     >
       <Card sx={{ width: 350, height: 148 }}>
         <CardContent>
-          <Typography variant="h6">{title}</Typography>
-          <Typography variant="h4" fontWeight="bold">
+          <Typography variant="subtitle1">{title}</Typography>
+          <Typography variant="h3" fontWeight="bold">
             {value.toLocaleString()}
           </Typography>
-          <Typography
-            variant="subtitle2"
-            color={change >= 0 ? 'success.main' : 'error.main'}
-          >
-            {change >= 0
-              ? `▲ ${change.toFixed(2)}% Increase`
-              : `▼ ${Math.abs(change).toFixed(2)}% Decrease`}
-          </Typography>
+          <Typography variant="subtitle2">
+  <span
+    style={{
+      color: change >= 0 ? 'green' : 'red', // Arrows color: green for increase, red for decrease
+    }}
+  >
+    {change >= 0 ? '▲' : '▼'}
+  </span>{' '}
+  <span style={{ fontWeight: 'bold', color: 'black' }}>
+    {change.toFixed(2)}%
+  </span>{' '}
+  <span style={{ color: 'grey' }}>
+    previous month
+  </span>
+</Typography>
         </CardContent>
       </Card>
     </Box>

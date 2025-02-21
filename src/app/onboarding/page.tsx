@@ -6,5 +6,9 @@ export const metadata = {
 };
 
 export default function Page() {
-  return (<ProtectedRoute><OnboardingView /></ProtectedRoute>);
+  return (
+    <ProtectedRoute>
+      <OnboardingView />
+    </ProtectedRoute>
+  );
 }

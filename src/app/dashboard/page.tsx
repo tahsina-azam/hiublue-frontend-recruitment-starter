@@ -30,7 +30,7 @@ export default function Dashboard() {
   return (
     <div>
       <ProtectedRoute>
-      <DashboardView />
+        <DashboardView />
       </ProtectedRoute>
     </div>
   );

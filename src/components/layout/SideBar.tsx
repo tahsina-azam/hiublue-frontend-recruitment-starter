@@ -56,8 +56,12 @@ export default function Sidebar({ open, handleDrawerClose }: SidebarProps) {
       {/* Sidebar Menu Items */}
       <List>
         <SidebarItem text="OVERVIEW" icon={null} link="/dashboard" />
-        <SidebarItem text="Dashboard" icon="/clock.png" link="/dashboard"  />
-        <SidebarItem text="Onboarding" icon="/shopping.png" link="/onboarding" />
+        <SidebarItem text="Dashboard" icon="/clock.png" link="/dashboard" />
+        <SidebarItem
+          text="Onboarding"
+          icon="/shopping.png"
+          link="/onboarding"
+        />
       </List>
     </Drawer>
   );
