@@ -1,44 +1,43 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import Divider from '@mui/material/Divider';
+"use client";
+import { useState, useEffect } from "react";
 import {
   Box,
   Card,
   CardContent,
   Typography,
   Table,
-  TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  TableCell,
   Paper,
   TextField,
   Select,
   MenuItem,
-  IconButton,
-  TablePagination,
   InputAdornment,
   Button,
-} from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import SearchIcon from '@mui/icons-material/Search';
-import { useAuth } from 'context/authContext';
+  Divider,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { useAuth } from "context/authContext";
+import OfferTableRows from "./OfferTableRows";
+import OfferPagination from "./OfferPagination";
+import { Offer } from "@/types/types";
+import StatusSelector from "./StatusSelector";
 
-const API_URL = 'https://dummy-1.hiublue.com/api/offers';
+const API_URL = "https://dummy-1.hiublue.com/api/offers";
 
-const OffersTable = () => {
-  const [offers, setOffers] = useState([]);
-  const [search, setSearch] = useState('');
+const OffersTable: React.FC = () => {
+  const [offers, setOffers] = useState<Offer[]>([]);
+  const [search, setSearch] = useState<string>("");
   const { token } = useAuth();
-  const [statusFilter, setStatusFilter] = useState('');
-  const [typeFilter, setTypeFilter] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('all'); // 'all' or 'accepted'
-  const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(5); // Default to 5 per page
-  const [totalItems, setTotalItems] = useState(0); // This stores the total number of items for pagination
+  const [typeFilter, setTypeFilter] = useState<string>("");
+  const [selectedStatus, setSelectedStatus] = useState<"all" | "accepted">("all");
+  const [page, setPage] = useState<number>(0);
+  const [perPage, setPerPage] = useState<number>(5);
+  const [totalItems, setTotalItems] = useState<number>(0);
+
+
 
   useEffect(() => {
     fetchOffers();
@@ -46,129 +45,42 @@ const OffersTable = () => {
 
   const fetchOffers = async () => {
     try {
-      let query = `${API_URL}?page=${page + 1}&per_page=${perPage}`; // Page starts from 1 in the query
+      let query = `${API_URL}?page=${page + 1}&per_page=${perPage}`;
       if (search) query += `&search=${search}`;
       if (typeFilter) query += `&type=${typeFilter}`;
-      if (selectedStatus !== 'all') query += `&status=accepted`;
+      if (selectedStatus !== "all") query += `&status=accepted`;
 
       const response = await fetch(query, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
       setOffers(data.data);
-      setTotalItems(data.meta.total); // Update totalItems with the total number of offers
+      setTotalItems(data.meta.total);
     } catch (error) {
-      console.error('Error fetching offers:', error);
+      console.error("Error fetching offers:", error);
     }
   };
 
-  const handlePageChange = (_, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleRowsPerPageChange = (event: any) => {
-    setPerPage(event.target.value); // Change the number of rows per page
-    setPage(0); // Reset to the first page when per page is changed
-  };
-
   return (
-    <Box
-      sx={{
-        width: '1180px',
-        height: 'auto',
-        margin: 'auto',
-        marginBottom: '20px',
-      }}
-    >
-      <Card sx={{ width: '1180px', height: 'auto' }}>
+    <Box sx={{ width: "1180px", height: "auto", margin: "auto", marginBottom: "20px" }}>
+      <Card sx={{ width: "1180px", height: "auto" }}>
         <CardContent>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            Offers Table
-          </Typography>
+          <Typography variant="h5" sx={{ mb: 2 }}>Offers Table</Typography>
 
           {/* Status Selection Buttons */}
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-              onClick={() => setSelectedStatus('all')}
-              sx={{
-                position: 'relative',
-                color: selectedStatus === 'all' ? '#000' : '#666',
-                fontWeight: selectedStatus === 'all' ? 'bold' : 'normal',
-                minWidth: 'auto',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  left: 0,
-                  bottom: 0,
-                  width: '100%',
-                  height: '2px',
-                  backgroundColor:
-                    selectedStatus === 'all' ? 'black' : 'transparent',
-                },
-              }}
-            >
-              All
-            </Button>
-            <Button
-              onClick={() => setSelectedStatus('accepted')}
-              sx={{
-                position: 'relative',
-                color: selectedStatus === 'accepted' ? '#000' : '#666',
-                fontWeight: selectedStatus === 'accepted' ? 'bold' : 'normal',
-                minWidth: 'auto',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  left: 0,
-                  bottom: 0,
-                  width: '100%',
-                  height: '2px',
-                  backgroundColor:
-                    selectedStatus === 'accepted' ? 'black' : 'transparent',
-                },
-              }}
-            >
-              Accepted
-            </Button>
-          </Box>
+          {/* <Box sx={{ display: "flex", gap: 2 }}>
+            <Button onClick={() => setSelectedStatus("all")} sx={{ fontWeight: selectedStatus === "all" ? "bold" : "normal" }}>All</Button>
+            <Button onClick={() => setSelectedStatus("accepted")} sx={{ fontWeight: selectedStatus === "accepted" ? "bold" : "normal" }}>Accepted</Button>
+          </Box> */}
+          <StatusSelector selectedStatus={selectedStatus} onStatusChange={setSelectedStatus} />
+
 
           <Divider />
 
           {/* Search & Filter Section */}
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-              mb: 2,
-              marginTop: '20px',
-            }}
-          >
-            {/* Search Input */}
-            <TextField
-              variant="outlined"
-              size="small"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search..."
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ minWidth: 250 }}
-            />
-
-            {/* Type Filter */}
-            <Select
-              displayEmpty
-              size="small"
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-              sx={{ width: 150 }}
-            >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2, marginTop: "20px" }}>
+            <TextField variant="outlined" size="small" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search..." InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>), }} sx={{ minWidth: 250 }} />
+            <Select displayEmpty size="small" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} sx={{ width: 150 }}>
               <MenuItem value="">All Types</MenuItem>
               <MenuItem value="yearly">Yearly</MenuItem>
               <MenuItem value="monthly">Monthly</MenuItem>
@@ -189,81 +101,16 @@ const OffersTable = () => {
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {offers.map((offer) => (
-                  <TableRow key={offer.id}>
-                    <TableCell>
-                      <span>
-                        {offer.user_name}
-                        <br />
-                        <Typography sx={{ fontSize: '11px', color: 'grey' }}>
-                          {offer.email}
-                        </Typography>
-                      </span>
-                    </TableCell>
-                    <TableCell>{offer.phone}</TableCell>
-                    <TableCell>{offer.company}</TableCell>
-                    <TableCell>{offer.jobTitle}</TableCell>
-                    <TableCell>{offer.type}</TableCell>
-                    <TableCell>
-                      <Box
-                        sx={{
-                          display: 'inline-block',
-                          px: 1,
-                          py: 0.5,
-                          borderRadius:'3px',
-                          fontSize: '10px',
-                          fontWeight: 'bold',
-                          textTransform: 'uppercase',
-                          backgroundColor: getStatusColor(offer.status).bg,
-                          color: getStatusColor(offer.status).text,
-                        }}
-                      >
-                        {offer.status}
-                      </Box>
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton color="grey">
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton>
-                        <MoreVertIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+              <OfferTableRows offers={offers} />
             </Table>
           </TableContainer>
 
           {/* Pagination */}
-          <TablePagination
-            component="div"
-            count={totalItems} // Set the total number of items here
-            rowsPerPage={perPage}
-            page={page}
-            onPageChange={handlePageChange}
-            onRowsPerPageChange={handleRowsPerPageChange}
-            rowsPerPageOptions={[3, 4, 5]} // Options for per page rows
-          />
+          <OfferPagination totalItems={totalItems} perPage={perPage} page={page} handlePageChange={(_, newPage) => setPage(newPage)} handleRowsPerPageChange={(event) => { setPerPage(Number(event.target.value)); setPage(0); }} />
         </CardContent>
       </Card>
     </Box>
   );
-};
-
-// Function to get status colors
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'accepted':
-      return { bg: '#D4EDDA', text: '#155724' }; // Light green background, dark green text
-    case 'pending':
-      return { bg: '#FFF3CD', text: '#856404' }; // Light yellow background, dark yellow text
-    case 'rejected':
-      return { bg: '#F8D7DA', text: '#721C24' }; // Light red background, dark red text
-    default:
-      return { bg: '#E9ECEF', text: '#495057' }; // Default grey
-  }
 };
 
 export default OffersTable;

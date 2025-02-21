@@ -29,20 +29,18 @@ export default function DashboardCard({
             {value.toLocaleString()}
           </Typography>
           <Typography variant="subtitle2">
-  <span
-    style={{
-      color: change >= 0 ? 'green' : 'red', // Arrows color: green for increase, red for decrease
-    }}
-  >
-    {change >= 0 ? '▲' : '▼'}
-  </span>{' '}
-  <span style={{ fontWeight: 'bold', color: 'black' }}>
-    {change.toFixed(2)}%
-  </span>{' '}
-  <span style={{ color: 'grey' }}>
-    previous month
-  </span>
-</Typography>
+            <span
+              style={{
+                color: change >= 0 ? 'green' : 'red', // Arrows color: green for increase, red for decrease
+              }}
+            >
+              {change >= 0 ? '▲' : '▼'}
+            </span>{' '}
+            <span style={{ fontWeight: 'bold', color: 'black' }}>
+              {change.toFixed(2)}%
+            </span>{' '}
+            <span style={{ color: 'grey' }}>previous month</span>
+          </Typography>
         </CardContent>
       </Card>
     </Box>
