@@ -251,7 +251,6 @@
 
 // export default OffersTable;
 
-
 // 'use client';
 
 // import { useState, useEffect } from 'react';
@@ -512,8 +511,6 @@
 
 // export default OffersTable;
 
-
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -541,12 +538,14 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
+import { useAuth } from 'context/authContext';
 
 const API_URL = 'https://dummy-1.hiublue.com/api/offers';
 
 const OffersTable = () => {
   const [offers, setOffers] = useState([]);
   const [search, setSearch] = useState('');
+  const {token} = useAuth();
   const [statusFilter, setStatusFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all'); // 'all' or 'accepted'
@@ -566,7 +565,7 @@ const OffersTable = () => {
       if (selectedStatus !== 'all') query += `&status=accepted`;
 
       const response = await fetch(query, {
-        headers: { Authorization: 'Bearer fake-jwt-token' },
+        headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
       setOffers(data.data);
@@ -587,7 +586,12 @@ const OffersTable = () => {
 
   return (
     <Box
-      sx={{ width: '1180px', height: 'auto', margin: 'auto', marginBottom:"20px" }}
+      sx={{
+        width: '1180px',
+        height: 'auto',
+        margin: 'auto',
+        marginBottom: '20px',
+      }}
     >
       <Card sx={{ width: '1180px', height: 'auto' }}>
         <CardContent>

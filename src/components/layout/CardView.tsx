@@ -26,7 +26,7 @@ export default function CardView() {
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer fake-jwt-token`, // Replace with actual token
+              Authorization: `Bearer ${token}`, // Replace with actual token
               'Content-Type': 'application/json',
             },
           }

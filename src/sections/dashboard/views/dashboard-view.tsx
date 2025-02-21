@@ -25,16 +25,15 @@ export default function DashboardView() {
       <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
 
       {/* Main Content Area */}
-     
+
       <Box
         component="main"
         sx={{
           display: 'flex',
           justifyContent: 'center', // Center horizontally
+
+          width: '100%', // Ensure it takes the full width
          
-         
-          width: "100%", // Ensure it takes the full width
-          ml: open ? `${drawerWidth}px` : 0,
           mt: '64px', // Adjust for AppBar height
           p: 3,
         }}
@@ -74,7 +73,7 @@ export default function DashboardView() {
           <OffersSentChart />
         </Box>
       </Box>
-      <Box sx={{ paddingBottom:4 }}>
+      <Box sx={{ paddingBottom: 4 }}>
         <OffersTable />
       </Box>
     </Box>

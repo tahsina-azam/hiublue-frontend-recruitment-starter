@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 import { Card, CardContent, Typography } from '@mui/material';
+import { useAuth } from 'context/authContext';
 
 const OffersSentChart = () => {
+  const {token}=useAuth();
   const [chartData, setChartData] = useState({
     series: [],
     categories: [],
@@ -14,7 +16,7 @@ const OffersSentChart = () => {
         const response = await fetch(
           'https://dummy-1.hiublue.com/api/dashboard/stat?filter=this-week',
           {
-            headers: { Authorization: `Bearer fake-jwt-token` }, // Using fake token as requested
+            headers: { Authorization: `Bearer ${token}` }, // Using fake token as requested
           }
         );
         const data = await response.json();

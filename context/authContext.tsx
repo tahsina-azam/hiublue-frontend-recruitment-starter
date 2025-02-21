@@ -33,15 +33,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   // Login function: Store token in localStorage with expiry
-  const login = (token: string, user: any) => {
+  // const login = (token: string, user: any) => {
+  //   const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour expiry
+  //   localStorage.setItem('token', token);
+  //   localStorage.setItem('user', JSON.stringify(user));
+  //   localStorage.setItem('tokenExpiry', expiryTime.toString());
+  //   setToken(token);
+  //   setUser(user);
+  // };
+
+  const login = (_token: string, user: any) => { 
+    const token = "fake-jwt-token"; // Always store this token
     const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour expiry
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('tokenExpiry', expiryTime.toString());
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("tokenExpiry", expiryTime.toString());
     setToken(token);
     setUser(user);
   };
-
+  
   // Logout function: Clear everything
   const logout = () => {
     localStorage.removeItem('token');
