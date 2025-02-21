@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 import { Card, CardContent, Typography } from '@mui/material';
 import { useAuth } from 'context/authContext';
+import { ApexOptions } from 'apexcharts'; // Import ApexOptions
+
+interface ChartData {
+  series: { name: string; data: number[]; color?: string }[];
+  categories: string[];
+}
 
 const OffersSentChart = () => {
   const { token } = useAuth();
-  const [chartData, setChartData] = useState({
+  const [chartData, setChartData] = useState<ChartData>({
     series: [],
     categories: [],
   });
@@ -16,22 +22,21 @@ const OffersSentChart = () => {
         const response = await fetch(
           'https://dummy-1.hiublue.com/api/dashboard/stat?filter=this-week',
           {
-            headers: { Authorization: `Bearer ${token}` }, // Using fake token as requested
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         const data = await response.json();
 
-        // Extracting offers sent data
-        const offersSent = data.offers_sent;
+        if (!data.offers_sent) return;
+
+        const offersSent = data.offers_sent as Record<string, number>;
         const days = Object.keys(offersSent);
         const offersData = days.map((day) => offersSent[day]);
 
-        // Convert full day names to 3-letter format (Mon, Tue, ...)
         const shortDays = days.map((day) => day.slice(0, 3));
 
-        // Set chart data
         setChartData({
-          series: [{ name: 'Offers Sent', data: offersData, color: '#000' }], // Black Line
+          series: [{ name: 'Offers Sent', data: offersData, color: '#000' }],
           categories: shortDays,
         });
       } catch (error) {
@@ -40,14 +45,15 @@ const OffersSentChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [token]);
 
-  const options = {
+  // Explicitly type 'options' as ApexOptions
+  const options: ApexOptions = {
     chart: { type: 'line', height: 318, width: 500 },
-    stroke: { curve: 'smooth', width: 2, colors: ['#000'] }, // Smooth black line
+    stroke: { curve: 'smooth', width: 2, colors: ['#000'] },
     xaxis: { categories: chartData.categories },
     yaxis: { title: { text: 'Offers Sent' } },
-    tooltip: { y: { formatter: (val) => `${val} offers` } },
+    tooltip: { y: { formatter: (val: number) => `${val} offers` } },
   };
 
   return (
@@ -71,3 +77,5 @@ const OffersSentChart = () => {
 };
 
 export default OffersSentChart;
+
+

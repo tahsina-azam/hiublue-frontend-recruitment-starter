@@ -1,6 +1,6 @@
 import { Controller, Control } from 'react-hook-form';
 import { TextField, FormControl } from '@mui/material';
-import { FormData } from '../types';
+import { FormData } from '@/types/types';
 
 interface PriceInputProps {
   control: Control<FormData>;
@@ -19,8 +19,11 @@ const PriceInput = ({ control, errors }: PriceInputProps) => (
           type="number"
           error={!!errors.price}
           helperText={errors.price?.message}
-          value={field.value ? parseFloat(field.value) : ''}
-          onChange={(e) => field.onChange(parseFloat(e.target.value) || '')}
+          value={field.value !== undefined && field.value !== null ? field.value.toString() : ''}
+          onChange={(e) => {
+            const value = e.target.value;
+            field.onChange(value ? parseFloat(value) : ''); // Ensure the value remains a number
+          }}
         />
       )}
     />

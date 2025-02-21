@@ -12,10 +12,17 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!token) {
-      router.replace('/login'); // Redirect to login if not authenticated
-    } else {
-      setLoading(false);
+   
+    if (typeof window !== 'undefined') {  // Ensure we're on the client side
+      if (!token) {
+        const logoutStatus = localStorage.getItem('logout');
+      if (logoutStatus === 'loggedout') {
+        router.push('/login'); // Redirect to login if user is logged out
+      }
+       
+      } else {
+        setLoading(false);
+      }
     }
   }, [token, router]);
 

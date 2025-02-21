@@ -1,38 +1,5 @@
-// 'use client';
-
-// import { useAuth } from 'context/authContext';
-// import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/navigation';
-
-// export default function ProtectedRoute({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   const { user, token } = useAuth();
-//   const router = useRouter();
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     if (!token) {
-//       router.push('/login');
-//     } else {
-//       setLoading(false);
-//     }
-//   }, [token, router]);
-
-//   if (loading) {
-//     return (
-//       <div className="h-screen flex justify-center items-center">
-//         Loading...
-//       </div>
-//     ); // Prevents flashing
-//   }
-
-//   return <>{children}</>;
-// }
-
 'use client';
+
 
 import { useAuth } from 'context/authContext';
 import { useEffect, useState } from 'react';
@@ -43,25 +10,30 @@ export default function ProtectedRoute({
 }: {
   children: React.ReactNode;
 }) {
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for the auth state to load before deciding
-    if (token === null) return; // Prevent redirecting before checking
-
+    if (token === null) {
+      setLoading(true); // Keep loading until token is fetched
+      
+    }
+    
     if (!token) {
-      router.push('/login');
+      const logoutStatus = localStorage.getItem('logout');
+      if (logoutStatus === 'loggedout') {
+        router.push('/login'); // Redirect to login if user is logged out
+      }
     } else {
-      setLoading(false);
+      setLoading(false); // Token available, stop loading
     }
   }, [token, router]);
 
   if (loading) {
     return (
       <div className="h-screen flex justify-center items-center">
-        Loading...
+        Logged Out
       </div>
     );
   }

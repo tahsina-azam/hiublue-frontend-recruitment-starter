@@ -16,7 +16,7 @@ interface SidebarItemProps {
 export default function SidebarItem({ text, icon, link }: SidebarItemProps) {
   return (
     <ListItem disablePadding>
-      <Link href={link} passHref style={{ textDecoration: 'none' }}>
+      <Link href={link || '/'} passHref style={{ textDecoration: 'none' }}>
         {' '}
         {/* Link component for routing */}
         <ListItemButton>

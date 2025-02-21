@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 import { Card, CardContent, Typography } from '@mui/material';
 import { useAuth } from 'context/authContext';
+import { ApexOptions } from 'apexcharts'; // ✅ Import ApexOptions
+
+interface ChartData {
+  series: { name: string; data: number[]; color?: string }[];
+  categories: string[];
+}
 
 const WeeklyWebsiteVisitsChart = () => {
   const { token } = useAuth();
-  const [chartData, setChartData] = useState({
+  const [chartData, setChartData] = useState<ChartData>({
     series: [],
     categories: [],
   });
@@ -16,13 +22,17 @@ const WeeklyWebsiteVisitsChart = () => {
         const response = await fetch(
           'https://dummy-1.hiublue.com/api/dashboard/stat?filter=this-week',
           {
-            headers: { Authorization: `Bearer ${token}` }, // Replace with actual token
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         const data = await response.json();
 
-        // Extracting website visits
-        const websiteVisits = data.website_visits;
+        if (!data.website_visits) return;
+
+        const websiteVisits = data.website_visits as Record<
+          string,
+          { desktop: number; mobile: number }
+        >;
         const days = Object.keys(websiteVisits);
         const desktopVisits = days.map((day) => websiteVisits[day].desktop);
         const mobileVisits = days.map((day) => websiteVisits[day].mobile);
@@ -33,8 +43,8 @@ const WeeklyWebsiteVisitsChart = () => {
         // Setting Chart Data
         setChartData({
           series: [
-            { name: 'Desktop Visits', data: desktopVisits, color: '#28a745' }, // Green
-            { name: 'Mobile Visits', data: mobileVisits, color: '#ffc107' }, // Yellow
+            { name: 'Desktop Visits', data: desktopVisits, color: '#28a745' },
+            { name: 'Mobile Visits', data: mobileVisits, color: '#ffc107' },
           ],
           categories: shortDays,
         });
@@ -44,9 +54,10 @@ const WeeklyWebsiteVisitsChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [token]);
 
-  const options = {
+  // ✅ Explicitly type 'options' as ApexOptions
+  const options: ApexOptions = {
     chart: { type: 'bar', height: 318, width: 528 },
     plotOptions: {
       bar: { horizontal: false, columnWidth: '20px', borderRadius: 5 },
@@ -56,13 +67,12 @@ const WeeklyWebsiteVisitsChart = () => {
     xaxis: { categories: chartData.categories },
     yaxis: { title: { text: 'Visits' } },
     fill: { opacity: 1 },
-    tooltip: { y: { formatter: (val) => `${val} visits` } },
+    tooltip: { y: { formatter: (val: number) => `${val} visits` } },
   };
 
   return (
     <Card sx={{ width: '555px' }}>
       <CardContent>
-        {' '}
         <Typography variant="h4" fontWeight="bold">
           Website visits
         </Typography>
@@ -81,3 +91,4 @@ const WeeklyWebsiteVisitsChart = () => {
 };
 
 export default WeeklyWebsiteVisitsChart;
+

@@ -63,7 +63,7 @@ const OfferTableRows: React.FC<OfferTableRowsProps> = ({ offers }) => {
             </Box>
           </TableCell>
           <TableCell align="right">
-            <IconButton color="grey">
+            <IconButton sx={{ color: 'grey' }}>
               <EditIcon />
             </IconButton>
             <IconButton>

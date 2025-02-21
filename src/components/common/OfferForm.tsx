@@ -36,9 +36,9 @@ const OfferForm = () => {
     defaultValues: {
       plan_type: 'monthly',
       additions: [],
-      user_id: null,
+      user_id: undefined,
       expired: '',
-      price: '',
+      price: 0,
     },
   });
 

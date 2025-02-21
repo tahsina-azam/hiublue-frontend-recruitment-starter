@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
+
 interface AuthContextType {
   user: { id: number; name: string; email: string } | null;
   token: string | null;
@@ -38,6 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('tokenExpiry', expiryTime.toString());
+    localStorage.removeItem('logout')
     setToken(token);
     setUser(user);
   };
@@ -47,8 +49,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('tokenExpiry');
+    localStorage.setItem('logout', "loggedout");
     setToken(null);
     setUser(null);
+   
   };
 
   return (
