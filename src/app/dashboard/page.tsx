@@ -4,6 +4,7 @@ import { useAuth } from 'context/authContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import DashboardView from '@/sections/dashboard/views/dashboard-view';
+import ProtectedRoute from '@/components/protected-route';
 
 export default function Dashboard() {
   const { token, logout } = useAuth();
@@ -12,10 +13,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!token) {
-      //console.log("this is no token")
       router.replace('/login'); // Redirect to login if not authenticated
     } else {
-      //console.log("this is the token:"+token)
       setLoading(false);
     }
   }, [token, router]);
@@ -30,7 +29,9 @@ export default function Dashboard() {
 
   return (
     <div>
+      <ProtectedRoute>
       <DashboardView />
+      </ProtectedRoute>
     </div>
   );
 }

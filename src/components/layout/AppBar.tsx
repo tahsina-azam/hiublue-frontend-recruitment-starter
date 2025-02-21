@@ -14,7 +14,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import ProfileImage from '../common/ProfileImage';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useAuth } from 'context/authContext'; 
+import { useAuth } from 'context/authContext';
 
 interface AppBarProps {
   open: boolean;
@@ -84,7 +84,7 @@ export default function AppBar({ open, handleDrawerOpen }: AppBarProps) {
                 logout(); // Call logout function
               }}
             >
-            <ListItemIcon>
+              <ListItemIcon>
                 <LogoutIcon fontSize="small" />
               </ListItemIcon>
               <Typography variant="inherit">Logout</Typography>
