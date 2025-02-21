@@ -1,5 +1,11 @@
 import { Controller, Control, UseFormSetValue } from 'react-hook-form';
-import { FormControl, FormLabel, FormControlLabel, Checkbox, Box } from '@mui/material';
+import {
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  Checkbox,
+  Box,
+} from '@mui/material';
 import { FormData } from '@/types/types';
 
 interface AdditionsSelectorProps {
@@ -21,13 +27,18 @@ const AdditionsSelector = ({
           key={addition}
           control={
             <Checkbox
-              checked={selectedAdditions.includes(addition as 'refundable' | 'on_demand' | 'negotiable')} // Explicitly cast addition
+              checked={selectedAdditions.includes(
+                addition as 'refundable' | 'on_demand' | 'negotiable'
+              )} // Explicitly cast addition
               onChange={(e) => {
                 // When checked, add the addition, else remove it
                 setValue(
-                  'additions', 
+                  'additions',
                   e.target.checked
-                    ? [...selectedAdditions, addition as 'refundable' | 'on_demand' | 'negotiable'] // Explicitly cast
+                    ? [
+                        ...selectedAdditions,
+                        addition as 'refundable' | 'on_demand' | 'negotiable',
+                      ] // Explicitly cast
                     : selectedAdditions.filter((a) => a !== addition)
                 );
               }}
@@ -41,4 +52,3 @@ const AdditionsSelector = ({
 );
 
 export default AdditionsSelector;
-

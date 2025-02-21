@@ -12,7 +12,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {  // Ensure we're on the client side
+    if (typeof window !== 'undefined') {
+      // Ensure we're on the client side
       if (!token) {
         router.replace('/login'); // Redirect to login if not authenticated
       } else {
@@ -37,4 +38,3 @@ export default function Dashboard() {
     </div>
   );
 }
-

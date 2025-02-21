@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
-
 interface AuthContextType {
   user: { id: number; name: string; email: string } | null;
   token: string | null;
@@ -34,12 +33,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const login = (_token: string, user: any) => {
-    const token = 'fake-jwt-token'; // Always store this token
+    const token = _token; // Store the token received from the API
     const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour expiry
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('tokenExpiry', expiryTime.toString());
-    localStorage.removeItem('logout')
+    localStorage.removeItem('logout');
     setToken(token);
     setUser(user);
   };
@@ -49,10 +48,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('tokenExpiry');
-    localStorage.setItem('logout', "loggedout");
+    localStorage.setItem('logout', 'loggedout');
     setToken(null);
     setUser(null);
-   
   };
 
   return (

@@ -19,7 +19,11 @@ const PriceInput = ({ control, errors }: PriceInputProps) => (
           type="number"
           error={!!errors.price}
           helperText={errors.price?.message}
-          value={field.value !== undefined && field.value !== null ? field.value.toString() : ''}
+          value={
+            field.value !== undefined && field.value !== null
+              ? field.value.toString()
+              : ''
+          }
           onChange={(e) => {
             const value = e.target.value;
             field.onChange(value ? parseFloat(value) : ''); // Ensure the value remains a number

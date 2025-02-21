@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useAuth } from 'context/authContext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -17,9 +16,8 @@ export default function ProtectedRoute({
   useEffect(() => {
     if (token === null) {
       setLoading(true); // Keep loading until token is fetched
-      
     }
-    
+
     if (!token) {
       const logoutStatus = localStorage.getItem('logout');
       if (logoutStatus === 'loggedout') {

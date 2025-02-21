@@ -1,8 +1,12 @@
+
+
+
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 import { Card, CardContent, Typography } from '@mui/material';
 import { useAuth } from 'context/authContext';
 import { ApexOptions } from 'apexcharts'; // Import ApexOptions
+import { useMediaQuery, useTheme } from '@mui/material';
 
 interface ChartData {
   series: { name: string; data: number[]; color?: string }[];
@@ -15,6 +19,9 @@ const OffersSentChart = () => {
     series: [],
     categories: [],
   });
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Check for small screen
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +56,11 @@ const OffersSentChart = () => {
 
   // Explicitly type 'options' as ApexOptions
   const options: ApexOptions = {
-    chart: { type: 'line', height: 318, width: 500 },
+    chart: {
+      type: 'line',
+      height: isSmallScreen ? 250 : 318, // Adjust height for small screens
+      width: '100%',
+    },
     stroke: { curve: 'smooth', width: 2, colors: ['#000'] },
     xaxis: { categories: chartData.categories },
     yaxis: { title: { text: 'Offers Sent' } },
@@ -57,18 +68,18 @@ const OffersSentChart = () => {
   };
 
   return (
-    <Card sx={{ width: '555px' }}>
+    <Card sx={{ width: '100%' }}>
       <CardContent>
-        <Typography variant="h4" fontWeight="bold">
-          Offers sent
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Offers Sent
         </Typography>
-        <div style={{ width: '528px', height: '318px' }}>
+        <div style={{ width: '100%', height: isSmallScreen ? '250px' : '310px' }}>
           <ApexCharts
             options={options}
             series={chartData.series}
             type="line"
-            height={318}
-            width={528}
+            height={isSmallScreen ? 250 : 318} // Set height based on screen size
+            width="100%" // Make chart width 100% to be responsive
           />
         </div>
       </CardContent>
@@ -77,5 +88,3 @@ const OffersSentChart = () => {
 };
 
 export default OffersSentChart;
-
-

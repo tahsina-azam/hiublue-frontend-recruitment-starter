@@ -1,3 +1,5 @@
+
+
 'use client';
 import { useState, useEffect } from 'react';
 import {
@@ -64,34 +66,31 @@ const OffersTable: React.FC = () => {
   return (
     <Box
       sx={{
-        width: '1180px',
-        height: 'auto',
+        width: '100%',
+        maxWidth: 1180,
         margin: 'auto',
         marginBottom: '20px',
       }}
     >
-      <Card sx={{ width: '1180px', height: 'auto' }}>
+      <Card sx={{ width: '100%' }}>
         <CardContent>
           <Typography variant="h5" sx={{ mb: 2 }}>
             Offers Table
           </Typography>
 
-          {/* Status Selection Buttons */}
-          {/* <Box sx={{ display: "flex", gap: 2 }}>
-            <Button onClick={() => setSelectedStatus("all")} sx={{ fontWeight: selectedStatus === "all" ? "bold" : "normal" }}>All</Button>
-            <Button onClick={() => setSelectedStatus("accepted")} sx={{ fontWeight: selectedStatus === "accepted" ? "bold" : "normal" }}>Accepted</Button>
-          </Box> */}
+          {/* Status Selection */}
           <StatusSelector
             selectedStatus={selectedStatus}
             onStatusChange={setSelectedStatus}
           />
 
-          <Divider />
+          <Divider sx={{ my: 2 }} />
 
           {/* Search & Filter Section */}
           <Box
             sx={{
               display: 'flex',
+              flexWrap: 'wrap',
               alignItems: 'center',
               gap: 2,
               mb: 2,
@@ -118,7 +117,7 @@ const OffersTable: React.FC = () => {
               size="small"
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              sx={{ width: 150 }}
+              sx={{ minWidth: 150 }}
             >
               <MenuItem value="">All Types</MenuItem>
               <MenuItem value="yearly">Yearly</MenuItem>
@@ -127,7 +126,10 @@ const OffersTable: React.FC = () => {
           </Box>
 
           {/* Table */}
-          <TableContainer component={Paper}>
+          <TableContainer
+            component={Paper}
+            sx={{ overflowX: 'auto', marginBottom: '16px' }}
+          >
             <Table>
               <TableHead>
                 <TableRow>
@@ -154,6 +156,7 @@ const OffersTable: React.FC = () => {
               setPerPage(Number(event.target.value));
               setPage(0);
             }}
+           
           />
         </CardContent>
       </Card>
@@ -162,3 +165,4 @@ const OffersTable: React.FC = () => {
 };
 
 export default OffersTable;
+

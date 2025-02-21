@@ -1,3 +1,5 @@
+
+
 'use client';
 
 import { useState } from 'react';
@@ -24,7 +26,23 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      const response = await fetch('https://dummy-1.hiublue.com/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Invalid email or password.');
+      }
+
+      const data = await response.json();
+      login(data.token, data.user); // Login with the returned token and user
       router.push('/dashboard');
     } catch (err) {
       setError('Invalid email or password.');

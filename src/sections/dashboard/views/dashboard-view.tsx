@@ -12,13 +12,19 @@ import dynamic from 'next/dynamic';
 const drawerWidth = 240; // Ensure the drawer width is consistent
 
 // Dynamically import the OffersSentChart component with SSR disabled
-const OffersSentChart = dynamic(() => import('../../../components/graph/OffersSentChart'), {
-  ssr: false, // Disable SSR for this component
-});
+const OffersSentChart = dynamic(
+  () => import('../../../components/graph/OffersSentChart'),
+  {
+    ssr: false, // Disable SSR for this component
+  }
+);
 
-const WebsiteVisitChart = dynamic(() => import('../../../components/graph/WebsiteVisitChart'), {
-  ssr: false, // Disable SSR for this component
-});
+const WebsiteVisitChart = dynamic(
+  () => import('../../../components/graph/WebsiteVisitChart'),
+  {
+    ssr: false, // Disable SSR for this component
+  }
+);
 
 export default function DashboardView() {
   const [open, setOpen] = useState(false);
@@ -27,7 +33,7 @@ export default function DashboardView() {
   const handleDrawerClose = () => setOpen(false);
 
   return (
-    <Box >
+    <Box>
       <CssBaseline />
       <AppBar open={open} handleDrawerOpen={handleDrawerOpen} />
       <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
@@ -43,7 +49,7 @@ export default function DashboardView() {
           width: '100%', // Ensure it takes the full width
 
           mt: '64px', // Adjust for AppBar height
-         
+
           p: 3,
         }}
       >
@@ -69,10 +75,10 @@ export default function DashboardView() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: { xs: '150px', sm: '50px' },
+          gap: { xs: '80px', sm: '50px' },
           flexWrap: 'wrap', // Makes it responsive
           mt: 4,
-          mb: 20,
+          mb: { xs: 10, sm: 20 },
         }}
       >
         <Box sx={{ width: { xs: '100%', sm: '555px' }, height: '318px' }}>
