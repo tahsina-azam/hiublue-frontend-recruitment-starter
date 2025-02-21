@@ -38,7 +38,11 @@ import { useAuth } from 'context/authContext';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
+export default function ProtectedRoute({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { user, token } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -55,9 +59,12 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   }, [token, router]);
 
   if (loading) {
-    return <div className="h-screen flex justify-center items-center">Loading...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
   }
 
   return <>{children}</>;
 }
-

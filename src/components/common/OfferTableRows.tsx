@@ -1,4 +1,11 @@
-import { TableBody, TableCell, TableRow, IconButton, Typography, Box } from '@mui/material';
+import {
+  TableBody,
+  TableCell,
+  TableRow,
+  IconButton,
+  Typography,
+  Box,
+} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Offer } from '@/types/types';
@@ -29,7 +36,9 @@ const OfferTableRows: React.FC<OfferTableRowsProps> = ({ offers }) => {
             <span>
               {offer.user_name}
               <br />
-              <Typography sx={{ fontSize: '11px', color: 'grey' }}>{offer.email}</Typography>
+              <Typography sx={{ fontSize: '11px', color: 'grey' }}>
+                {offer.email}
+              </Typography>
             </span>
           </TableCell>
           <TableCell>{offer.phone}</TableCell>

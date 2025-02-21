@@ -1,5 +1,11 @@
 import { Controller, Control } from 'react-hook-form';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import {
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from '@mui/material';
 import { FormData } from '@/types/types';
 
 interface PlanTypeSelectorProps {
@@ -15,7 +21,12 @@ const PlanTypeSelector = ({ control }: PlanTypeSelectorProps) => (
       render={({ field }) => (
         <RadioGroup row {...field}>
           {['pay_as_you_go', 'monthly', 'yearly'].map((plan) => (
-            <FormControlLabel key={plan} value={plan} control={<Radio />} label={plan.replace(/_/g, ' ')} />
+            <FormControlLabel
+              key={plan}
+              value={plan}
+              control={<Radio />}
+              label={plan.replace(/_/g, ' ')}
+            />
           ))}
         </RadioGroup>
       )}

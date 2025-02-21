@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-
   const login = (_token: string, user: any) => {
     const token = 'fake-jwt-token'; // Always store this token
     const expiryTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour expiry

@@ -1,5 +1,11 @@
 import { Controller, Control } from 'react-hook-form';
-import { FormControl, FormLabel, FormControlLabel, Checkbox, Box } from '@mui/material';
+import {
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  Checkbox,
+  Box,
+} from '@mui/material';
 import { FormData } from '@/types/types';
 
 interface AdditionsSelectorProps {
@@ -8,7 +14,11 @@ interface AdditionsSelectorProps {
   selectedAdditions: string[];
 }
 
-const AdditionsSelector = ({ control, setValue, selectedAdditions }: AdditionsSelectorProps) => (
+const AdditionsSelector = ({
+  control,
+  setValue,
+  selectedAdditions,
+}: AdditionsSelectorProps) => (
   <FormControl fullWidth component="fieldset" margin="normal">
     <FormLabel>Additions</FormLabel>
     <Box display="flex" gap={2}>

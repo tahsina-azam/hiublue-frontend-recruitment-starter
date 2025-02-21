@@ -1,7 +1,13 @@
 import { TablePagination } from '@mui/material';
 import { OfferPaginationProps } from '@/types/types';
 
-const OfferPagination: React.FC<OfferPaginationProps> = ({ totalItems, perPage, page, handlePageChange, handleRowsPerPageChange }) => {
+const OfferPagination: React.FC<OfferPaginationProps> = ({
+  totalItems,
+  perPage,
+  page,
+  handlePageChange,
+  handleRowsPerPageChange,
+}) => {
   return (
     <TablePagination
       component="div"
